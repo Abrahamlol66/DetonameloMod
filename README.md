@@ -41,6 +41,19 @@ Para probar en un cliente de desarrollo (descarga assets, puede tardar la primer
      (es una dependencia obligatoria, declarada en `fabric.mod.json`).
 3. Lanza Minecraft 26.2 con el perfil de Fabric Loader.
 
+## Nota conocida: badge de mod en REI
+
+Si usas [REI](https://modrinth.com/mod/roughly-enough-items), Detonate y Treecapitator
+aparecen con el badge/namespace de "Minecraft" en vez de "Detonamelo" al buscarlos o al
+filtrar con `@`. Esto es un límite de REI, no un bug del mod: la `ResourceKey` y los tags de
+ambos encantamientos sí usan el namespace `detonamelo` correctamente (confirmado revisando el
+bytecode de `Enchantment`/tags en el jar de 26.2). REI representa cualquier encantamiento
+(incluyendo los propios de vanilla) con un `minecraft:enchanted_book` genérico como ícono de
+búsqueda, y de ahí saca el badge de mod — como los encantamientos son puramente data-driven
+(solo JSON, sin ítem propio registrado en código), REI no tiene otra pista de dónde vienen.
+Arreglarlo requeriría escribir un plugin de integración con la API de REI (dependencia nueva),
+que se decidió no hacer por ahora porque es solo cosmético.
+
 ## Versiones usadas
 
 Sacadas directamente de la rama `26.2` oficial de
