@@ -11,15 +11,17 @@ Mod de Fabric para Minecraft Java Edition **26.2** que agrega tres encantamiento
 - **Treecapitator** (verde, nivel máximo 1, hachas): al minar un tronco, se tala el
   árbol completo (troncos conectados + hojas naturales cercanas) y se replanta
   automáticamente un brote del mismo tipo de árbol en la base.
-- **Veinminer** (rojo, nivel máximo 1, picos): al minar una mena de mineral (carbón,
-  cobre, diamante, esmeralda, oro, hierro, lapislázuli, redstone, cuarzo del Nether
-  o ancient debris), se minan también todas las menas del mismo tipo conectadas por
-  cara a esa.
+- **Veinminer** (azul claro / `aqua`, nivel máximo 1, picos): al minar una mena de
+  mineral (carbón, cobre, diamante, esmeralda, oro, hierro, lapislázuli, redstone,
+  cuarzo del Nether o ancient debris), se minan también todas las menas del mismo
+  tipo conectadas por cara a esa.
 
-Detonate, Treecapitator y Veinminer son mutuamente excluyentes entre sí (no tiene
-sentido combinar dos encantamientos de minado de área en la misma herramienta), pero
-cada uno sigue siendo compatible con los demás encantamientos normales de su
-herramienta (Fortuna, Toque de seda, Eficiencia, Irrompibilidad, Reparación).
+Detonate y Treecapitator son mutuamente excluyentes entre sí (no tiene sentido
+combinar dos encantamientos de minado de área de bloques en la misma herramienta).
+Veinminer es compatible con Detonate (de todas formas nunca comparten herramienta:
+Detonate es para picos/palas y Veinminer solo para picos, pero cuando ambos caen en
+un pico sí se pueden combinar) y, como los otros dos, sigue siendo compatible con
+Fortuna, Toque de seda, Eficiencia, Irrompibilidad y Reparación.
 
 ## Compilar
 
@@ -81,14 +83,18 @@ sin mappings de Yarn.
 ## Nota sobre el color del tooltip
 
 El esquema de `description` en 26.2 permite poner el color directamente en el JSON
-del encantamiento (`{"translate": "...", "color": "dark_purple"}` / `"green"` / `"red"`).
+del encantamiento (`{"translate": "...", "color": "dark_purple"}` / `"green"` / `"aqua"`).
 Se revisó el bytecode de `Enchantment.getFullname` / `ComponentUtils.mergeStyles` en
 el jar de Minecraft 26.2: cuando la descripción ya trae un color explícito, ese color
 tiene prioridad sobre el gris que vanilla aplicaría por defecto a los encantamientos
 sin maldición. Es decir, **no hace falta un mixin** para que Detonate se vea morado,
-Treecapitator verde y Veinminer rojo; de todas formas, confírmalo tú mismo en el juego
-(ver checklist). Si en tu partida ves el nombre en gris, es señal de que algo más
+Treecapitator verde y Veinminer azul claro; de todas formas, confírmalo tú mismo en el
+juego (ver checklist). Si en tu partida ves el nombre en gris, es señal de que algo más
 (otro mod, un resource pack) está sobrescribiendo el estilo, no un problema de este mod.
+
+Nota: los 16 colores de texto de Minecraft (`ChatFormatting`) no incluyen un "light_blue"
+literal (ese es un color de tinte/lana, no de texto); el más cercano a "azul claro" es
+`aqua` (celeste/cian claro), que es el que se usó.
 
 ## Checklist de pruebas manuales
 
@@ -97,9 +103,11 @@ Treecapitator verde y Veinminer rojo; de todas formas, confírmalo tú mismo en 
 - [ ] `/enchant @s detonamelo:treecapitator` funciona en un hacha, y falla en un pico.
 - [ ] `/enchant @s detonamelo:veinminer` funciona en un pico, y falla en una pala o un hacha.
 - [ ] El tooltip de Detonate se ve en **morado** (`dark_purple`), el de Treecapitator en
-      **verde** (`green`) y el de Veinminer en **rojo** (`red`), no en gris.
-- [ ] Detonate, Treecapitator y Veinminer son **incompatibles entre sí**: no se pueden
-      combinar dos de ellos en la misma herramienta, ni en el yunque ni en modo creativo.
+      **verde** (`green`) y el de Veinminer en **azul claro** (`aqua`), no en gris.
+- [ ] Detonate y Treecapitator son **incompatibles entre sí**: no se pueden combinar
+      en la misma herramienta (ni en el yunque ni en modo creativo).
+- [ ] Veinminer sí se puede combinar con Detonate en el mismo pico (junto con Fortuna
+      o Toque de seda si quieres).
 - [ ] Un pico con Detonate + Fortuna y otro pico con Detonate + Toque de seda se
       pueden combinar en el yunque (ambos libros se dejan aplicar junto con Detonate).
       Fortuna aumenta los drops de los bloques extra igual que en el bloque central;
