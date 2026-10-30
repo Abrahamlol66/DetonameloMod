@@ -1,0 +1,29 @@
+package mx.abraham.detonamelo.enchantment;
+
+import mx.abraham.detonamelo.Detonamelo;
+import net.minecraft.core.Holder;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.core.RegistryAccess;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
+
+/** Claves y helpers para los encantamientos data-driven del mod. */
+public final class ModEnchantments {
+	public static final ResourceKey<Enchantment> DETONATE =
+			ResourceKey.create(Registries.ENCHANTMENT, Detonamelo.id("detonate"));
+	public static final ResourceKey<Enchantment> TREECAPITATOR =
+			ResourceKey.create(Registries.ENCHANTMENT, Detonamelo.id("treecapitator"));
+
+	private ModEnchantments() {
+	}
+
+	/** Nivel del encantamiento en el stack, usando el registry access del nivel actual. */
+	public static int getLevel(RegistryAccess registryAccess, ResourceKey<Enchantment> key, ItemStack stack) {
+		HolderLookup.RegistryLookup<Enchantment> lookup = registryAccess.lookupOrThrow(Registries.ENCHANTMENT);
+		Holder<Enchantment> holder = lookup.getOrThrow(key);
+		return EnchantmentHelper.getItemEnchantmentLevel(holder, stack);
+	}
+}
