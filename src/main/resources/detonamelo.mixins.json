@@ -3,6 +3,8 @@
 	"package": "mx.abraham.detonamelo.mixin",
 	"compatibilityLevel": "JAVA_25",
 	"mixins": [
+		"AnvilMenuMixin",
+		"ItemCombinerMenuAccessor",
 		"ServerPlayerGameModeMixin"
 	],
 	"injectors": {

@@ -1,0 +1,54 @@
+package mx.abraham.detonamelo.mixin;
+
+import mx.abraham.detonamelo.enchantment.ModEnchantments;
+import net.minecraft.core.Holder;
+import net.minecraft.core.RegistryAccess;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AnvilMenu;
+import net.minecraft.world.inventory.DataSlot;
+import net.minecraft.world.inventory.ResultContainer;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.Enchantment;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+/**
+ * Vanilla deja aplicar cualquier encantamiento a cualquier item via yunque cuando el jugador
+ * esta en modo creativo o cuando el item base es un libro (AnvilMenu.createResult fuerza
+ * compatible=true en esos casos, ignorando supported_items). Para Detonate y Treecapitator
+ * queremos que la restriccion de herramienta (picos/palas y hachas respectivamente) se
+ * respete siempre, asi que invalidamos el resultado si de todos modos termino con alguno de
+ * los dos en un item que no soporta.
+ */
+@Mixin(AnvilMenu.class)
+public abstract class AnvilMenuMixin {
+	@Shadow
+	private DataSlot cost;
+
+	@Inject(method = "createResult", at = @At("RETURN"))
+	private void detonamelo$enforceToolRestrictions(CallbackInfo ci) {
+		ItemCombinerMenuAccessor self = (ItemCombinerMenuAccessor) this;
+		ResultContainer resultSlots = self.detonamelo$getResultSlots();
+		Player player = self.detonamelo$getPlayer();
+
+		ItemStack result = resultSlots.getItem(0);
+		if (result.isEmpty()) {
+			return;
+		}
+
+		RegistryAccess registryAccess = player.level().registryAccess();
+		if (hasUnsupportedEnchant(registryAccess, ModEnchantments.DETONATE, result)
+				|| hasUnsupportedEnchant(registryAccess, ModEnchantments.TREECAPITATOR, result)) {
+			resultSlots.setItem(0, ItemStack.EMPTY);
+			this.cost.set(0);
+		}
+	}
+
+	private static boolean hasUnsupportedEnchant(RegistryAccess registryAccess, net.minecraft.resources.ResourceKey<Enchantment> key, ItemStack result) {
+		Holder<Enchantment> holder = ModEnchantments.getHolder(registryAccess, key);
+		return ModEnchantments.getLevel(registryAccess, key, result) > 0 && !holder.value().isSupportedItem(result);
+	}
+}

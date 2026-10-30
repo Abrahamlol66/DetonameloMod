@@ -1,4 +1,6 @@
 {
 	"enchantment.detonamelo.detonate": "Detonate",
-	"enchantment.detonamelo.treecapitator": "Treecapitator"
+	"enchantment.detonamelo.treecapitator": "Treecapitator",
+	"tag.item.detonamelo.detonate_enchantable": "Items encantables con Detonate",
+	"tag.item.detonamelo.treecapitator_enchantable": "Items encantables con Treecapitator"
 }

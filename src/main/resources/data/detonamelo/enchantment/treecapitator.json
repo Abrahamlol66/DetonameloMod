@@ -4,6 +4,7 @@
 		"translate": "enchantment.detonamelo.treecapitator",
 		"color": "green"
 	},
+	"exclusive_set": "#detonamelo:exclusive_set/tools",
 	"max_cost": {
 		"base": 65,
 		"per_level_above_first": 0

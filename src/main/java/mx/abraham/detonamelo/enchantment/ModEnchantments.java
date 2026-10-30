@@ -22,8 +22,12 @@ public final class ModEnchantments {
 
 	/** Nivel del encantamiento en el stack, usando el registry access del nivel actual. */
 	public static int getLevel(RegistryAccess registryAccess, ResourceKey<Enchantment> key, ItemStack stack) {
+		return EnchantmentHelper.getItemEnchantmentLevel(getHolder(registryAccess, key), stack);
+	}
+
+	/** Holder del encantamiento, usando el registry access del nivel actual. */
+	public static Holder<Enchantment> getHolder(RegistryAccess registryAccess, ResourceKey<Enchantment> key) {
 		HolderLookup.RegistryLookup<Enchantment> lookup = registryAccess.lookupOrThrow(Registries.ENCHANTMENT);
-		Holder<Enchantment> holder = lookup.getOrThrow(key);
-		return EnchantmentHelper.getItemEnchantmentLevel(holder, stack);
+		return lookup.getOrThrow(key);
 	}
 }
