@@ -2,6 +2,7 @@ package mx.abraham.detonamelo.logic;
 
 import mx.abraham.detonamelo.enchantment.ModEnchantments;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.Identifier;
 import net.minecraft.server.level.ServerLevel;
@@ -24,6 +25,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.OptionalInt;
 import java.util.Set;
 
 /**
@@ -148,20 +150,22 @@ public final class TreecapitatorHandler {
 		return found;
 	}
 
+	/**
+	 * BFS de hojas naturales conectadas a nuestros troncos, usando los mismos 6 vecinos
+	 * (caras, sin diagonales) que usa el decaimiento vanilla de hojas. Para no robarle hojas a
+	 * un arbol vecino cuando los follajes se tocan, solo reclamamos una hoja si la distancia
+	 * real al tronco mas cercano que ya mantiene el juego (LeavesBlock.DISTANCE) coincide con
+	 * la distancia que calculamos desde NUESTRO tronco; si un tronco ajeno esta mas cerca, esa
+	 * hoja no es nuestra y dejamos de expandir por ahi.
+	 */
 	private static List<BlockPos> findConnectedLeaves(ServerLevel level, List<BlockPos> logs) {
 		List<BlockPos> found = new ArrayList<>();
 		Map<BlockPos, Integer> distance = new HashMap<>();
 		Deque<BlockPos> queue = new ArrayDeque<>();
 
 		for (BlockPos logPos : logs) {
-			for (BlockPos neighbor : neighbors26(logPos)) {
-				if (distance.containsKey(neighbor)) {
-					continue;
-				}
-				if (isNaturalLeaf(level, neighbor)) {
-					distance.put(neighbor, 1);
-					queue.add(neighbor);
-				}
+			for (BlockPos neighbor : neighbors6(logPos)) {
+				tryClaimLeaf(level, neighbor, 1, distance, queue);
 			}
 		}
 
@@ -172,25 +176,30 @@ public final class TreecapitatorHandler {
 			if (dist >= MAX_LEAF_DISTANCE) {
 				continue;
 			}
-			for (BlockPos neighbor : neighbors26(pos)) {
-				if (distance.containsKey(neighbor)) {
-					continue;
-				}
-				if (isNaturalLeaf(level, neighbor)) {
-					distance.put(neighbor, dist + 1);
-					queue.add(neighbor);
-				}
+			for (BlockPos neighbor : neighbors6(pos)) {
+				tryClaimLeaf(level, neighbor, dist + 1, distance, queue);
 			}
 		}
 		return found;
 	}
 
-	private static boolean isNaturalLeaf(ServerLevel level, BlockPos pos) {
-		BlockState state = level.getBlockState(pos);
-		if (!(state.getBlock() instanceof LeavesBlock)) {
-			return false;
+	private static void tryClaimLeaf(ServerLevel level, BlockPos pos, int candidateDistance, Map<BlockPos, Integer> distance, Deque<BlockPos> queue) {
+		if (distance.containsKey(pos)) {
+			return;
 		}
-		return !state.getValue(LeavesBlock.PERSISTENT);
+		BlockState state = level.getBlockState(pos);
+		if (!(state.getBlock() instanceof LeavesBlock) || state.getValue(LeavesBlock.PERSISTENT)) {
+			return;
+		}
+
+		OptionalInt realDistance = LeavesBlock.getOptionalDistanceAt(state);
+		if (realDistance.isPresent() && realDistance.getAsInt() < candidateDistance) {
+			// Un tronco ajeno (de otro arbol) esta mas cerca de esta hoja que el nuestro.
+			return;
+		}
+
+		distance.put(pos, candidateDistance);
+		queue.add(pos);
 	}
 
 	/** Especie segun las hojas encontradas; si no se puede determinar, segun el tronco. */
@@ -235,6 +244,15 @@ public final class TreecapitatorHandler {
 		}
 
 		return baseCandidates.isEmpty() ? List.of() : List.of(baseCandidates.get(0));
+	}
+
+	/** Los 6 vecinos por cara (sin diagonales), igual que el decaimiento vanilla de hojas. */
+	private static List<BlockPos> neighbors6(BlockPos center) {
+		List<BlockPos> result = new ArrayList<>(6);
+		for (Direction direction : Direction.values()) {
+			result.add(center.relative(direction));
+		}
+		return result;
 	}
 
 	private static List<BlockPos> neighbors26(BlockPos center) {
