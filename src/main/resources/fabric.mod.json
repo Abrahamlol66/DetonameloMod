@@ -1,0 +1,30 @@
+{
+	"schemaVersion": 1,
+	"id": "detonamelo",
+	"version": "${version}",
+	"name": "Detonamelo",
+	"description": "Agrega los encantamientos Detonate (minado 3x3) y Treecapitator (tala completa con replantado).",
+	"authors": [
+		"Abraham"
+	],
+	"contact": {
+		"sources": "https://github.com/Abrahamlol66/DetonameloMod"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/detonamelo/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"mx.abraham.detonamelo.Detonamelo"
+		]
+	},
+	"mixins": [
+		"detonamelo.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.20.1",
+		"minecraft": "~26.2",
+		"java": ">=25",
+		"fabric-api": "*"
+	}
+}
