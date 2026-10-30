@@ -18,10 +18,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 /**
  * Vanilla deja aplicar cualquier encantamiento a cualquier item via yunque cuando el jugador
  * esta en modo creativo o cuando el item base es un libro (AnvilMenu.createResult fuerza
- * compatible=true en esos casos, ignorando supported_items). Para Detonate y Treecapitator
- * queremos que la restriccion de herramienta (picos/palas y hachas respectivamente) se
- * respete siempre, asi que invalidamos el resultado si de todos modos termino con alguno de
- * los dos en un item que no soporta.
+ * compatible=true en esos casos, ignorando supported_items). Para los encantamientos del mod
+ * queremos que la restriccion de herramienta se respete siempre, asi que invalidamos el
+ * resultado si de todos modos termino con alguno de ellos en un item que no soporta.
  */
 @Mixin(AnvilMenu.class)
 public abstract class AnvilMenuMixin {
@@ -40,10 +39,12 @@ public abstract class AnvilMenuMixin {
 		}
 
 		RegistryAccess registryAccess = player.level().registryAccess();
-		if (hasUnsupportedEnchant(registryAccess, ModEnchantments.DETONATE, result)
-				|| hasUnsupportedEnchant(registryAccess, ModEnchantments.TREECAPITATOR, result)) {
-			resultSlots.setItem(0, ItemStack.EMPTY);
-			this.cost.set(0);
+		for (net.minecraft.resources.ResourceKey<Enchantment> key : ModEnchantments.ALL) {
+			if (hasUnsupportedEnchant(registryAccess, key, result)) {
+				resultSlots.setItem(0, ItemStack.EMPTY);
+				this.cost.set(0);
+				return;
+			}
 		}
 	}
 

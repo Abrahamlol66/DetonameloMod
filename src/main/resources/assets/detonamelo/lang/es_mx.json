@@ -1,6 +1,8 @@
 {
 	"enchantment.detonamelo.detonate": "Detonate",
 	"enchantment.detonamelo.treecapitator": "Treecapitator",
+	"enchantment.detonamelo.veinminer": "Veinminer",
 	"tag.item.detonamelo.detonate_enchantable": "Items encantables con Detonate",
-	"tag.item.detonamelo.treecapitator_enchantable": "Items encantables con Treecapitator"
+	"tag.item.detonamelo.treecapitator_enchantable": "Items encantables con Treecapitator",
+	"tag.item.detonamelo.veinminer_enchantable": "Items encantables con Veinminer"
 }

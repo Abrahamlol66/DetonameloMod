@@ -10,12 +10,19 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 
+import java.util.List;
+
 /** Claves y helpers para los encantamientos data-driven del mod. */
 public final class ModEnchantments {
 	public static final ResourceKey<Enchantment> DETONATE =
 			ResourceKey.create(Registries.ENCHANTMENT, Detonamelo.id("detonate"));
 	public static final ResourceKey<Enchantment> TREECAPITATOR =
 			ResourceKey.create(Registries.ENCHANTMENT, Detonamelo.id("treecapitator"));
+	public static final ResourceKey<Enchantment> VEINMINER =
+			ResourceKey.create(Registries.ENCHANTMENT, Detonamelo.id("veinminer"));
+
+	/** Todos los encantamientos del mod, usado por el mixin de yunque para validarlos a todos. */
+	public static final List<ResourceKey<Enchantment>> ALL = List.of(DETONATE, TREECAPITATOR, VEINMINER);
 
 	private ModEnchantments() {
 	}
