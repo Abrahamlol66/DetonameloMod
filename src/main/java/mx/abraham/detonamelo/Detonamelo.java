@@ -1,5 +1,6 @@
 package mx.abraham.detonamelo;
 
+import mx.abraham.detonamelo.item.ModCreativeTabs;
 import mx.abraham.detonamelo.logic.DetonateHandler;
 import mx.abraham.detonamelo.logic.TreecapitatorHandler;
 import mx.abraham.detonamelo.logic.VeinMinerHandler;
@@ -15,6 +16,8 @@ public class Detonamelo implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
+		ModCreativeTabs.register();
+
 		PlayerBlockBreakEvents.AFTER.register(DetonateHandler::afterBlockBreak);
 		PlayerBlockBreakEvents.AFTER.register(TreecapitatorHandler::afterBlockBreak);
 		PlayerBlockBreakEvents.AFTER.register(VeinMinerHandler::afterBlockBreak);
