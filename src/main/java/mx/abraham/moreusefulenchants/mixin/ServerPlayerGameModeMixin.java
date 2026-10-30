@@ -1,6 +1,6 @@
-package mx.abraham.detonamelo.mixin;
+package mx.abraham.moreusefulenchants.mixin;
 
-import mx.abraham.detonamelo.logic.DetonateHandler;
+import mx.abraham.moreusefulenchants.logic.DetonateHandler;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.protocol.game.ServerboundPlayerActionPacket;
@@ -22,7 +22,7 @@ public abstract class ServerPlayerGameModeMixin {
 	public ServerPlayer player;
 
 	@Inject(method = "handleBlockBreakAction", at = @At("HEAD"))
-	private void detonamelo$captureMinedFace(BlockPos pos, ServerboundPlayerActionPacket.Action action, Direction direction, int maxBuildHeight, int sequence, CallbackInfo ci) {
+	private void moreusefulenchants$captureMinedFace(BlockPos pos, ServerboundPlayerActionPacket.Action action, Direction direction, int maxBuildHeight, int sequence, CallbackInfo ci) {
 		if (action == ServerboundPlayerActionPacket.Action.START_DESTROY_BLOCK) {
 			DetonateHandler.setLastMinedFace(this.player, direction);
 		}

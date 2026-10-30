@@ -1,6 +1,6 @@
-package mx.abraham.detonamelo.enchantment;
+package mx.abraham.moreusefulenchants.enchantment;
 
-import mx.abraham.detonamelo.Detonamelo;
+import mx.abraham.moreusefulenchants.MoreUsefulEnchants;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.RegistryAccess;
@@ -15,11 +15,11 @@ import java.util.List;
 /** Claves y helpers para los encantamientos data-driven del mod. */
 public final class ModEnchantments {
 	public static final ResourceKey<Enchantment> DETONATE =
-			ResourceKey.create(Registries.ENCHANTMENT, Detonamelo.id("detonate"));
+			ResourceKey.create(Registries.ENCHANTMENT, MoreUsefulEnchants.id("detonate"));
 	public static final ResourceKey<Enchantment> TREECAPITATOR =
-			ResourceKey.create(Registries.ENCHANTMENT, Detonamelo.id("treecapitator"));
+			ResourceKey.create(Registries.ENCHANTMENT, MoreUsefulEnchants.id("treecapitator"));
 	public static final ResourceKey<Enchantment> VEINMINER =
-			ResourceKey.create(Registries.ENCHANTMENT, Detonamelo.id("veinminer"));
+			ResourceKey.create(Registries.ENCHANTMENT, MoreUsefulEnchants.id("veinminer"));
 
 	/** Todos los encantamientos del mod, usado por el mixin de yunque para validarlos a todos. */
 	public static final List<ResourceKey<Enchantment>> ALL = List.of(DETONATE, TREECAPITATOR, VEINMINER);

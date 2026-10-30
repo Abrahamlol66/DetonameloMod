@@ -1,8 +1,8 @@
 {
 	"replace": false,
 	"values": [
-		"detonamelo:detonate",
-		"detonamelo:treecapitator",
-		"detonamelo:veinminer"
+		"moreusefulenchants:detonate",
+		"moreusefulenchants:treecapitator",
+		"moreusefulenchants:veinminer"
 	]
 }

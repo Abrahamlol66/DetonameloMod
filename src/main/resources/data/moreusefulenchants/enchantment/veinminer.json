@@ -1,7 +1,7 @@
 {
 	"anvil_cost": 8,
 	"description": {
-		"translate": "enchantment.detonamelo.veinminer",
+		"translate": "enchantment.moreusefulenchants.veinminer",
 		"color": "aqua"
 	},
 	"max_cost": {
@@ -13,10 +13,10 @@
 		"base": 15,
 		"per_level_above_first": 0
 	},
-	"primary_items": "#detonamelo:veinminer_enchantable",
+	"primary_items": "#moreusefulenchants:veinminer_enchantable",
 	"slots": [
 		"mainhand"
 	],
-	"supported_items": "#detonamelo:veinminer_enchantable",
+	"supported_items": "#moreusefulenchants:veinminer_enchantable",
 	"weight": 1
 }

@@ -1,7 +1,7 @@
-package mx.abraham.detonamelo.item;
+package mx.abraham.moreusefulenchants.item;
 
-import mx.abraham.detonamelo.Detonamelo;
-import mx.abraham.detonamelo.enchantment.ModEnchantments;
+import mx.abraham.moreusefulenchants.MoreUsefulEnchants;
+import mx.abraham.moreusefulenchants.enchantment.ModEnchantments;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -15,18 +15,18 @@ import net.minecraft.world.item.enchantment.ItemEnchantments;
 
 /**
  * Pestana propia en el menu creativo con libros encantados de regalo (uno por cada
- * encantamiento del mod), para que Detonamelo tenga su propia seccion como cualquier otro mod.
+ * encantamiento del mod), para que MoreUsefulEnchants tenga su propia seccion como cualquier otro mod.
  */
 public final class ModCreativeTabs {
-	public static final ResourceKey<CreativeModeTab> DETONAMELO =
-			ResourceKey.create(net.minecraft.core.registries.Registries.CREATIVE_MODE_TAB, Detonamelo.id("detonamelo"));
+	public static final ResourceKey<CreativeModeTab> MOREUSEFULENCHANTS =
+			ResourceKey.create(net.minecraft.core.registries.Registries.CREATIVE_MODE_TAB, MoreUsefulEnchants.id("moreusefulenchants"));
 
 	private ModCreativeTabs() {
 	}
 
 	public static void register() {
 		CreativeModeTab tab = CreativeModeTab.builder(CreativeModeTab.Row.TOP, 0)
-				.title(Component.translatable("itemGroup.detonamelo"))
+				.title(Component.translatable("itemGroup.moreusefulenchants"))
 				.icon(() -> new ItemStack(Items.ENCHANTED_BOOK))
 				.displayItems((parameters, output) -> {
 					output.accept(enchantedBook(parameters.holders(), ModEnchantments.DETONATE));
@@ -34,7 +34,7 @@ public final class ModCreativeTabs {
 					output.accept(enchantedBook(parameters.holders(), ModEnchantments.VEINMINER));
 				})
 				.build();
-		Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, DETONAMELO, tab);
+		Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, MOREUSEFULENCHANTS, tab);
 	}
 
 	private static ItemStack enchantedBook(net.minecraft.core.HolderLookup.Provider holders, ResourceKey<Enchantment> key) {

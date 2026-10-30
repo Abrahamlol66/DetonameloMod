@@ -1,9 +1,9 @@
 {
 	"schemaVersion": 1,
-	"id": "detonamelo",
+	"id": "moreusefulenchants",
 	"version": "${version}",
-	"name": "Detonamelo",
-	"description": "Agrega los encantamientos Detonate (minado 3x3) y Treecapitator (tala completa con replantado).",
+	"name": "MoreUsefulEnchants",
+	"description": "Agrega los encantamientos Detonate (minado en cubo), Treecapitator (tala completa con replantado) y Veinminer (minado de vetas).",
 	"authors": [
 		"Abraham"
 	],
@@ -11,15 +11,15 @@
 		"sources": "https://github.com/Abrahamlol66/DetonameloMod"
 	},
 	"license": "CC0-1.0",
-	"icon": "assets/detonamelo/icon.png",
+	"icon": "assets/moreusefulenchants/icon.png",
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"mx.abraham.detonamelo.Detonamelo"
+			"mx.abraham.moreusefulenchants.MoreUsefulEnchants"
 		]
 	},
 	"mixins": [
-		"detonamelo.mixins.json"
+		"moreusefulenchants.mixins.json"
 	],
 	"depends": {
 		"fabricloader": ">=0.20.1",

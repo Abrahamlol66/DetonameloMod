@@ -1,4 +1,4 @@
-# Detonamelo
+# MoreUsefulEnchants
 
 Mod de Fabric para Minecraft Java Edition **26.2** que agrega tres encantamientos:
 
@@ -32,7 +32,7 @@ Requiere **Java 25** (coincide con lo que pide Minecraft 26.2 y Fabric Loom
 ./gradlew build
 ```
 
-El jar queda en `build/libs/detonamelo-1.0.0.jar`.
+El jar queda en `build/libs/moreusefulenchants-1.0.0.jar`.
 
 Para probar en un cliente de desarrollo (descarga assets, puede tardar la primera vez):
 
@@ -44,7 +44,7 @@ Para probar en un cliente de desarrollo (descarga assets, puede tardar la primer
 
 1. Instala [Fabric Loader](https://fabricmc.net/use/) para Minecraft 26.2.
 2. Copia a la carpeta `mods` de tu instalación:
-   - `detonamelo-1.0.0.jar` (este mod)
+   - `moreusefulenchants-1.0.0.jar` (este mod)
    - [Fabric API](https://modrinth.com/mod/fabric-api) `0.161.0+26.2` o compatible
      (es una dependencia obligatoria, declarada en `fabric.mod.json`).
 3. Lanza Minecraft 26.2 con el perfil de Fabric Loader.
@@ -52,9 +52,9 @@ Para probar en un cliente de desarrollo (descarga assets, puede tardar la primer
 ## Nota conocida: badge de mod en REI
 
 Si usas [REI](https://modrinth.com/mod/roughly-enough-items), los tres encantamientos
-aparecen con el badge/namespace de "Minecraft" en vez de "Detonamelo" al buscarlos o al
+aparecen con el badge/namespace de "Minecraft" en vez de "MoreUsefulEnchants" al buscarlos o al
 filtrar con `@`. Esto es un límite de REI, no un bug del mod: la `ResourceKey` y los tags de
-los tres encantamientos sí usan el namespace `detonamelo` correctamente (confirmado revisando el
+los tres encantamientos sí usan el namespace `moreusefulenchants` correctamente (confirmado revisando el
 bytecode de `Enchantment`/tags en el jar de 26.2). REI representa cualquier encantamiento
 (incluyendo los propios de vanilla) con un `minecraft:enchanted_book` genérico como ícono de
 búsqueda, y de ahí saca el badge de mod — como los encantamientos son puramente data-driven
@@ -98,10 +98,10 @@ literal (ese es un color de tinte/lana, no de texto); el más cercano a "azul cl
 
 ## Checklist de pruebas manuales
 
-- [ ] `/enchant @s detonamelo:detonate` funciona en un pico y en una pala en la mano
+- [ ] `/enchant @s moreusefulenchants:detonate` funciona en un pico y en una pala en la mano
       principal, y falla (mensaje de error) en una espada o en un hacha.
-- [ ] `/enchant @s detonamelo:treecapitator` funciona en un hacha, y falla en un pico.
-- [ ] `/enchant @s detonamelo:veinminer` funciona en un pico, y falla en una pala o un hacha.
+- [ ] `/enchant @s moreusefulenchants:treecapitator` funciona en un hacha, y falla en un pico.
+- [ ] `/enchant @s moreusefulenchants:veinminer` funciona en un pico, y falla en una pala o un hacha.
 - [ ] El tooltip de Detonate se ve en **morado** (`dark_purple`), el de Treecapitator en
       **verde** (`green`) y el de Veinminer en **azul claro** (`aqua`), no en gris.
 - [ ] Detonate y Treecapitator son **incompatibles entre sí**: no se pueden combinar

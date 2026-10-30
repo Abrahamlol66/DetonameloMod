@@ -1,4 +1,4 @@
-package mx.abraham.detonamelo.mixin;
+package mx.abraham.moreusefulenchants.mixin;
 
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.ItemCombinerMenu;
@@ -14,8 +14,8 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 @Mixin(ItemCombinerMenu.class)
 public interface ItemCombinerMenuAccessor {
 	@Accessor("player")
-	Player detonamelo$getPlayer();
+	Player moreusefulenchants$getPlayer();
 
 	@Accessor("resultSlots")
-	ResultContainer detonamelo$getResultSlots();
+	ResultContainer moreusefulenchants$getResultSlots();
 }

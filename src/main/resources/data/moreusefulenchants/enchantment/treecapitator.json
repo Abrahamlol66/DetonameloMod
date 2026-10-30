@@ -1,0 +1,23 @@
+{
+	"anvil_cost": 8,
+	"description": {
+		"translate": "enchantment.moreusefulenchants.treecapitator",
+		"color": "green"
+	},
+	"exclusive_set": "#moreusefulenchants:exclusive_set/tools",
+	"max_cost": {
+		"base": 65,
+		"per_level_above_first": 0
+	},
+	"max_level": 1,
+	"min_cost": {
+		"base": 15,
+		"per_level_above_first": 0
+	},
+	"primary_items": "#moreusefulenchants:treecapitator_enchantable",
+	"slots": [
+		"mainhand"
+	],
+	"supported_items": "#moreusefulenchants:treecapitator_enchantable",
+	"weight": 1
+}

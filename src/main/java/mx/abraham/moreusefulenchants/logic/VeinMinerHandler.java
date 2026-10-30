@@ -1,7 +1,7 @@
-package mx.abraham.detonamelo.logic;
+package mx.abraham.moreusefulenchants.logic;
 
-import mx.abraham.detonamelo.Detonamelo;
-import mx.abraham.detonamelo.enchantment.ModEnchantments;
+import mx.abraham.moreusefulenchants.MoreUsefulEnchants;
+import mx.abraham.moreusefulenchants.enchantment.ModEnchantments;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.Registries;
@@ -29,7 +29,7 @@ import java.util.Set;
  */
 public final class VeinMinerHandler {
 	/** Union de todos los tags vanilla de menas minerales (no hay un tag unico en vanilla). */
-	public static final TagKey<Block> ORE = TagKey.create(Registries.BLOCK, Detonamelo.id("ore"));
+	public static final TagKey<Block> ORE = TagKey.create(Registries.BLOCK, MoreUsefulEnchants.id("ore"));
 
 	private static final int MAX_ORES = 128;
 

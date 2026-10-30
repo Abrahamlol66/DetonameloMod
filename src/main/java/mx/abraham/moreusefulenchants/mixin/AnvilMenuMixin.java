@@ -1,6 +1,6 @@
-package mx.abraham.detonamelo.mixin;
+package mx.abraham.moreusefulenchants.mixin;
 
-import mx.abraham.detonamelo.enchantment.ModEnchantments;
+import mx.abraham.moreusefulenchants.enchantment.ModEnchantments;
 import net.minecraft.core.Holder;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.world.entity.player.Player;
@@ -28,10 +28,10 @@ public abstract class AnvilMenuMixin {
 	private DataSlot cost;
 
 	@Inject(method = "createResult", at = @At("RETURN"))
-	private void detonamelo$enforceToolRestrictions(CallbackInfo ci) {
+	private void moreusefulenchants$enforceToolRestrictions(CallbackInfo ci) {
 		ItemCombinerMenuAccessor self = (ItemCombinerMenuAccessor) this;
-		ResultContainer resultSlots = self.detonamelo$getResultSlots();
-		Player player = self.detonamelo$getPlayer();
+		ResultContainer resultSlots = self.moreusefulenchants$getResultSlots();
+		Player player = self.moreusefulenchants$getPlayer();
 
 		ItemStack result = resultSlots.getItem(0);
 		if (result.isEmpty()) {

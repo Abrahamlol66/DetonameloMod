@@ -1,6 +1,6 @@
 {
 	"required": true,
-	"package": "mx.abraham.detonamelo.mixin",
+	"package": "mx.abraham.moreusefulenchants.mixin",
 	"compatibilityLevel": "JAVA_25",
 	"mixins": [
 		"AnvilMenuMixin",

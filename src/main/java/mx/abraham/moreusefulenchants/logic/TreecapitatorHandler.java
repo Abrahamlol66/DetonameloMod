@@ -1,6 +1,6 @@
-package mx.abraham.detonamelo.logic;
+package mx.abraham.moreusefulenchants.logic;
 
-import mx.abraham.detonamelo.enchantment.ModEnchantments;
+import mx.abraham.moreusefulenchants.enchantment.ModEnchantments;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;

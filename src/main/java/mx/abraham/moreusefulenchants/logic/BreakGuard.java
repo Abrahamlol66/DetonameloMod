@@ -1,4 +1,4 @@
-package mx.abraham.detonamelo.logic;
+package mx.abraham.moreusefulenchants.logic;
 
 /**
  * Bandera anti-recursion: al romper bloques extra desde Detonate/Treecapitator

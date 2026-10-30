@@ -1,10 +1,10 @@
 {
 	"anvil_cost": 8,
 	"description": {
-		"translate": "enchantment.detonamelo.detonate",
+		"translate": "enchantment.moreusefulenchants.detonate",
 		"color": "dark_purple"
 	},
-	"exclusive_set": "#detonamelo:exclusive_set/tools",
+	"exclusive_set": "#moreusefulenchants:exclusive_set/tools",
 	"max_cost": {
 		"base": 65,
 		"per_level_above_first": 0
@@ -14,10 +14,10 @@
 		"base": 15,
 		"per_level_above_first": 0
 	},
-	"primary_items": "#detonamelo:detonate_enchantable",
+	"primary_items": "#moreusefulenchants:detonate_enchantable",
 	"slots": [
 		"mainhand"
 	],
-	"supported_items": "#detonamelo:detonate_enchantable",
+	"supported_items": "#moreusefulenchants:detonate_enchantable",
 	"weight": 1
 }
