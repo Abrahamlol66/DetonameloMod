@@ -2,7 +2,9 @@
 	"required": true,
 	"package": "mx.abraham.detonamelo.mixin",
 	"compatibilityLevel": "JAVA_25",
-	"mixins": [],
+	"mixins": [
+		"ServerPlayerGameModeMixin"
+	],
 	"injectors": {
 		"defaultRequire": 1
 	},

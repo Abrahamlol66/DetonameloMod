@@ -1,6 +1,8 @@
 package mx.abraham.detonamelo;
 
+import mx.abraham.detonamelo.logic.DetonateHandler;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents;
 import net.minecraft.resources.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,6 +13,8 @@ public class Detonamelo implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
+		PlayerBlockBreakEvents.AFTER.register(DetonateHandler::afterBlockBreak);
+
 		LOGGER.info("Detonamelo cargado.");
 	}
 
