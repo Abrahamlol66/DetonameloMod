@@ -3,8 +3,8 @@
 Mod de Fabric para Minecraft Java Edition **26.2** que agrega nueve encantamientos:
 
 - **Detonate** (morado, nivel máximo 1, picos y palas): al minar un bloque, también
-  se rompen los bloques del mismo tipo en un cubo 3x3x3 alrededor (el plano 3x3
-  perpendicular a la cara que se minó, repetido 2 capas más hacia adentro). Fortuna,
+  se rompen los bloques del mismo tipo en un prisma 3x3x2 alrededor (el plano 3x3
+  perpendicular a la cara que se minó, repetido 1 capa más hacia adentro). Fortuna,
   Toque de seda, Eficiencia, Irrompibilidad y Reparación funcionan normalmente en
   cada bloque extra (se rompen con las mecánicas vanilla de verdad, no son copias
   simuladas).
@@ -147,9 +147,9 @@ literal (ese es un color de tinte/lana, no de texto); el más cercano a "azul cl
 - [ ] En modo creativo o combinando con un libro encantado en el yunque, Detonate NO se
       deja poner en una espada ni Veinminer en un hacha (a diferencia de los
       encantamientos vanilla, que sí se pueden "forzar" así).
-- [ ] Minar con Detonate rompe un cubo 3x3x3 (3 de ancho, 3 de alto, 3 de profundidad)
+- [ ] Minar con Detonate rompe un prisma 3x3x2 (3 de ancho, 3 de alto, 2 de profundidad)
       del mismo tipo de bloque alrededor del bloque minado, centrado en el plano
-      perpendicular a la cara que se minó y extendido hacia adentro.
+      perpendicular a la cara que se minó y extendido 1 capa hacia adentro.
 - [ ] Al minar con Detonate, solo se rompen bloques del **mismo tipo** que el central
       (p. ej. piedra con piedra alrededor: el pasto, tierra, cobblestone, andesita,
       deepslate o menas vecinas no se ven afectadas).

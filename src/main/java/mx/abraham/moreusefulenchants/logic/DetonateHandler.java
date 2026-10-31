@@ -21,12 +21,12 @@ import java.util.UUID;
 
 /**
  * Logica del encantamiento Detonate: mina un area 3x3 del mismo bloque alrededor del bloque
- * roto, y continua 2 capas mas hacia adentro (opuesto a la cara minada) para que el area
- * total sea un cubo de 3x3x3 (3 de ancho, 3 de alto, 3 de profundidad).
+ * roto, y continua 1 capa mas hacia adentro (opuesto a la cara minada) para que el area
+ * total sea un prisma de 3x3x2 (3 de ancho, 3 de alto, 2 de profundidad).
  */
 public final class DetonateHandler {
-	/** Capas de profundidad: la del bloque minado (0) + 2 extra. */
-	private static final int DEPTH_LAYERS = 3;
+	/** Capas de profundidad: la del bloque minado (0) + 1 extra. */
+	private static final int DEPTH_LAYERS = 2;
 
 	private static final Map<UUID, Direction> LAST_MINED_FACE = new HashMap<>();
 
@@ -88,13 +88,13 @@ public final class DetonateHandler {
 	}
 
 	/**
-	 * Todas las posiciones del cubo 3x3x3 alrededor del centro (menos el propio centro, que ya
-	 * se rompio por vanilla): la capa 0 es el plano perpendicular a la cara minada (3x3, sin el
-	 * centro), y las capas 1 y 2 repiten ese mismo plano 1 y 2 bloques hacia adentro (direccion
-	 * opuesta a la cara minada).
+	 * Todas las posiciones del prisma 3x3x2 alrededor del centro (menos el propio centro, que
+	 * ya se rompio por vanilla): la capa 0 es el plano perpendicular a la cara minada (3x3, sin
+	 * el centro), y la capa 1 repite ese mismo plano 1 bloque hacia adentro (direccion opuesta
+	 * a la cara minada).
 	 */
 	private static List<BlockPos> cubeOffsets(BlockPos center, Direction minedFace) {
-		List<BlockPos> positions = new ArrayList<>(26);
+		List<BlockPos> positions = new ArrayList<>(17);
 		Direction.Axis axis = minedFace.getAxis();
 		Direction depthDirection = minedFace.getOpposite();
 
