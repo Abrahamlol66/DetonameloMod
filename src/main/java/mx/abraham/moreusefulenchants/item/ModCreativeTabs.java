@@ -17,8 +17,8 @@ import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.ItemEnchantments;
 
 /**
- * Pestana propia en el menu creativo con libros encantados de regalo (uno por cada
- * encantamiento del mod, a su nivel maximo), para que MoreUsefulEnchants tenga su propia
+ * Pestana propia en el menu creativo con libros encantados de regalo: uno por cada nivel de
+ * cada encantamiento del mod (1, 2, 3...), para que MoreUsefulEnchants tenga su propia
  * seccion como cualquier otro mod.
  */
 public final class ModCreativeTabs {
@@ -34,18 +34,21 @@ public final class ModCreativeTabs {
 				.icon(() -> new ItemStack(Items.ENCHANTED_BOOK))
 				.displayItems((parameters, output) -> {
 					for (ResourceKey<Enchantment> key : ModEnchantments.ALL) {
-						output.accept(enchantedBook(parameters.holders(), key));
+						Holder<Enchantment> holder = parameters.holders().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(key);
+						int maxLevel = holder.value().getMaxLevel();
+						for (int level = 1; level <= maxLevel; level++) {
+							output.accept(enchantedBook(holder, level));
+						}
 					}
 				})
 				.build();
 		Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, MOREUSEFULENCHANTS, tab);
 	}
 
-	private static ItemStack enchantedBook(HolderLookup.Provider holders, ResourceKey<Enchantment> key) {
-		Holder<Enchantment> holder = holders.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(key);
+	private static ItemStack enchantedBook(Holder<Enchantment> holder, int level) {
 		ItemStack book = new ItemStack(Items.ENCHANTED_BOOK);
 		ItemEnchantments.Mutable enchantments = new ItemEnchantments.Mutable(ItemEnchantments.EMPTY);
-		enchantments.set(holder, holder.value().getMaxLevel());
+		enchantments.set(holder, level);
 		book.set(DataComponents.STORED_ENCHANTMENTS, enchantments.toImmutable());
 		return book;
 	}

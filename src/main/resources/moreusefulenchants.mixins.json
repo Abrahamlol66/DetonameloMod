@@ -5,6 +5,7 @@
 	"mixins": [
 		"AnvilMenuMixin",
 		"ItemCombinerMenuAccessor",
+		"PlayerAttackMixin",
 		"ServerPlayerGameModeMixin"
 	],
 	"injectors": {
