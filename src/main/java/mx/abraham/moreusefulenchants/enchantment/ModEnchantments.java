@@ -20,9 +20,22 @@ public final class ModEnchantments {
 			ResourceKey.create(Registries.ENCHANTMENT, MoreUsefulEnchants.id("treecapitator"));
 	public static final ResourceKey<Enchantment> VEINMINER =
 			ResourceKey.create(Registries.ENCHANTMENT, MoreUsefulEnchants.id("veinminer"));
+	public static final ResourceKey<Enchantment> AUTO_SMELT =
+			ResourceKey.create(Registries.ENCHANTMENT, MoreUsefulEnchants.id("auto_smelt"));
+	public static final ResourceKey<Enchantment> REPLENISH =
+			ResourceKey.create(Registries.ENCHANTMENT, MoreUsefulEnchants.id("replenish"));
+	public static final ResourceKey<Enchantment> HARVEST =
+			ResourceKey.create(Registries.ENCHANTMENT, MoreUsefulEnchants.id("harvest"));
+	public static final ResourceKey<Enchantment> TELEKINESIS =
+			ResourceKey.create(Registries.ENCHANTMENT, MoreUsefulEnchants.id("telekinesis"));
+	public static final ResourceKey<Enchantment> LIFESTEAL =
+			ResourceKey.create(Registries.ENCHANTMENT, MoreUsefulEnchants.id("lifesteal"));
+	public static final ResourceKey<Enchantment> HEAD_THIEF =
+			ResourceKey.create(Registries.ENCHANTMENT, MoreUsefulEnchants.id("head_thief"));
 
 	/** Todos los encantamientos del mod, usado por el mixin de yunque para validarlos a todos. */
-	public static final List<ResourceKey<Enchantment>> ALL = List.of(DETONATE, TREECAPITATOR, VEINMINER);
+	public static final List<ResourceKey<Enchantment>> ALL = List.of(
+			DETONATE, TREECAPITATOR, VEINMINER, AUTO_SMELT, REPLENISH, HARVEST, TELEKINESIS, LIFESTEAL, HEAD_THIEF);
 
 	private ModEnchantments() {
 	}

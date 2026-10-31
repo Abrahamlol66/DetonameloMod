@@ -1,6 +1,6 @@
 # MoreUsefulEnchants
 
-Mod de Fabric para Minecraft Java Edition **26.2** que agrega tres encantamientos:
+Mod de Fabric para Minecraft Java Edition **26.2** que agrega nueve encantamientos:
 
 - **Detonate** (morado, nivel máximo 1, picos y palas): al minar un bloque, también
   se rompen los bloques del mismo tipo en un cubo 3x3x3 alrededor (el plano 3x3
@@ -15,13 +15,31 @@ Mod de Fabric para Minecraft Java Edition **26.2** que agrega tres encantamiento
   mineral (carbón, cobre, diamante, esmeralda, oro, hierro, lapislázuli, redstone,
   cuarzo del Nether o ancient debris), se minan también todas las menas del mismo
   tipo conectadas por cara a esa.
+- **Auto-Smelt / Fundición** (`#FF8C1A`, nivel máximo 1, picos y palas): cada drop con
+  receta de fundición se reemplaza por su resultado (misma cantidad), dando también la
+  XP de esa receta. Aplica a cada bloque roto por Detonate y Veinminer también.
+- **Replenish / Replantar** (`#55C24A`, nivel máximo 1, azadas): al romper un cultivo
+  maduro, descuenta 1 semilla de los drops (o del inventario) y lo vuelve a plantar en
+  edad 0. Romper un cultivo no maduro se cancela, salvo agachado.
+- **Harvest / Cosecha** (`#E3B23C`, nivel máximo 3, azadas): al romper un cultivo
+  maduro, cosecha también los cultivos maduros en un área horizontal (3x3 / 5x5 / 7x7
+  según el nivel). Se detiene antes de romper la azada; agacharse desactiva el área.
+- **Telekinesis / Telequinesis** (`#B266FF`, nivel máximo 1, herramientas de minería y
+  armas cuerpo a cuerpo): los drops de bloques (incluidos los extra de Detonate,
+  Veinminer, Treecapitator y Harvest) y los drops + XP de mobs van directo al
+  inventario; lo que no cabe cae en la posición del jugador.
+- **Lifesteal / Robavidas** (`#C2185B`, nivel máximo 3, espadas y hachas, encantamiento
+  de tesoro): al golpear con un ataque cargado, cura 10/15/20% del daño infligido según
+  el nivel, máximo 4 de vida por golpe.
+- **Head Thief / Ladrón de cabezas** (`#E0D6B8`, nivel máximo 3, espadas y hachas): al
+  matar, probabilidad de soltar la cabeza del mob (zombi, esqueleto, creeper, piglin,
+  jugador), +2% por nivel de Saqueo. Compatible con Telekinesis.
 
-Detonate y Treecapitator son mutuamente excluyentes entre sí (no tiene sentido
-combinar dos encantamientos de minado de área de bloques en la misma herramienta).
-Veinminer es compatible con Detonate (de todas formas nunca comparten herramienta:
-Detonate es para picos/palas y Veinminer solo para picos, pero cuando ambos caen en
-un pico sí se pueden combinar) y, como los otros dos, sigue siendo compatible con
-Fortuna, Toque de seda, Eficiencia, Irrompibilidad y Reparación.
+Detonate, Treecapitator y Veinminer son mutuamente excluyentes entre sí. Auto-Smelt es
+incompatible solo con Toque de Seda (sigue siendo compatible con Fortuna). El resto no
+tiene restricciones de exclusividad entre sí y todos siguen siendo compatibles con los
+demás encantamientos normales de su herramienta (Fortuna, Toque de seda, Eficiencia,
+Irrompibilidad, Reparación, Saqueo).
 
 ## Compilar
 

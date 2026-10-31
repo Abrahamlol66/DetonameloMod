@@ -4,6 +4,7 @@
 		"translate": "enchantment.moreusefulenchants.veinminer",
 		"color": "aqua"
 	},
+	"exclusive_set": "#moreusefulenchants:exclusive_set/tools",
 	"max_cost": {
 		"base": 65,
 		"per_level_above_first": 0

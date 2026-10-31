@@ -1,0 +1,22 @@
+{
+	"anvil_cost": 2,
+	"description": {
+		"translate": "enchantment.moreusefulenchants.replenish",
+		"color": "#55C24A"
+	},
+	"max_cost": {
+		"base": 60,
+		"per_level_above_first": 0
+	},
+	"max_level": 1,
+	"min_cost": {
+		"base": 10,
+		"per_level_above_first": 0
+	},
+	"primary_items": "#minecraft:hoes",
+	"slots": [
+		"mainhand"
+	],
+	"supported_items": "#minecraft:hoes",
+	"weight": 5
+}

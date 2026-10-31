@@ -3,7 +3,15 @@
 	"enchantment.moreusefulenchants.detonate": "Detonate",
 	"enchantment.moreusefulenchants.treecapitator": "Treecapitator",
 	"enchantment.moreusefulenchants.veinminer": "Veinminer",
+	"enchantment.moreusefulenchants.auto_smelt": "Fundición",
+	"enchantment.moreusefulenchants.replenish": "Replantar",
+	"enchantment.moreusefulenchants.harvest": "Cosecha",
+	"enchantment.moreusefulenchants.telekinesis": "Telequinesis",
+	"enchantment.moreusefulenchants.lifesteal": "Robavidas",
+	"enchantment.moreusefulenchants.head_thief": "Ladrón de cabezas",
 	"tag.item.moreusefulenchants.detonate_enchantable": "Items encantables con Detonate",
 	"tag.item.moreusefulenchants.treecapitator_enchantable": "Items encantables con Treecapitator",
-	"tag.item.moreusefulenchants.veinminer_enchantable": "Items encantables con Veinminer"
+	"tag.item.moreusefulenchants.veinminer_enchantable": "Items encantables con Veinminer",
+	"tag.item.moreusefulenchants.auto_smelt_enchantable": "Items encantables con Fundición",
+	"tag.item.moreusefulenchants.telekinesis_enchantable": "Items encantables con Telequinesis"
 }

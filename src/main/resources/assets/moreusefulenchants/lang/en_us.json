@@ -3,7 +3,15 @@
 	"enchantment.moreusefulenchants.detonate": "Detonate",
 	"enchantment.moreusefulenchants.treecapitator": "Treecapitator",
 	"enchantment.moreusefulenchants.veinminer": "Veinminer",
+	"enchantment.moreusefulenchants.auto_smelt": "Auto-Smelt",
+	"enchantment.moreusefulenchants.replenish": "Replenish",
+	"enchantment.moreusefulenchants.harvest": "Harvest",
+	"enchantment.moreusefulenchants.telekinesis": "Telekinesis",
+	"enchantment.moreusefulenchants.lifesteal": "Lifesteal",
+	"enchantment.moreusefulenchants.head_thief": "Head Thief",
 	"tag.item.moreusefulenchants.detonate_enchantable": "Detonate Enchantable Items",
 	"tag.item.moreusefulenchants.treecapitator_enchantable": "Treecapitator Enchantable Items",
-	"tag.item.moreusefulenchants.veinminer_enchantable": "Veinminer Enchantable Items"
+	"tag.item.moreusefulenchants.veinminer_enchantable": "Veinminer Enchantable Items",
+	"tag.item.moreusefulenchants.auto_smelt_enchantable": "Auto-Smelt Enchantable Items",
+	"tag.item.moreusefulenchants.telekinesis_enchantable": "Telekinesis Enchantable Items"
 }

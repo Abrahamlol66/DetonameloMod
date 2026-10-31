@@ -1,0 +1,22 @@
+{
+	"anvil_cost": 4,
+	"description": {
+		"translate": "enchantment.moreusefulenchants.telekinesis",
+		"color": "#B266FF"
+	},
+	"max_cost": {
+		"base": 65,
+		"per_level_above_first": 0
+	},
+	"max_level": 1,
+	"min_cost": {
+		"base": 15,
+		"per_level_above_first": 0
+	},
+	"primary_items": "#moreusefulenchants:telekinesis_enchantable",
+	"slots": [
+		"mainhand"
+	],
+	"supported_items": "#moreusefulenchants:telekinesis_enchantable",
+	"weight": 2
+}
