@@ -53,14 +53,24 @@ Para probar en un cliente de desarrollo (descarga assets, puede tardar la primer
 
 Si usas [REI](https://modrinth.com/mod/roughly-enough-items), los tres encantamientos
 aparecen con el badge/namespace de "Minecraft" en vez de "MoreUsefulEnchants" al buscarlos o al
-filtrar con `@`. Esto es un límite de REI, no un bug del mod: la `ResourceKey` y los tags de
-los tres encantamientos sí usan el namespace `moreusefulenchants` correctamente (confirmado revisando el
-bytecode de `Enchantment`/tags en el jar de 26.2). REI representa cualquier encantamiento
-(incluyendo los propios de vanilla) con un `minecraft:enchanted_book` genérico como ícono de
-búsqueda, y de ahí saca el badge de mod — como los encantamientos son puramente data-driven
-(solo JSON, sin ítem propio registrado en código), REI no tiene otra pista de dónde vienen.
-Arreglarlo requeriría escribir un plugin de integración con la API de REI (dependencia nueva),
-que se decidió no hacer por ahora porque es solo cosmético.
+filtrar con `@`. Esto es un límite real de REI, no un bug del mod ni algo arreglable con un
+plugin de integración: la `ResourceKey` y los tags de los tres encantamientos sí usan el
+namespace `moreusefulenchants` correctamente (confirmado revisando el bytecode de
+`Enchantment`/tags en el jar de 26.2).
+
+Se investigó el jar real de REI 26.2 (`me.shedaniel.rei.api.common.entry.type.EntryDefinition`
+y `ModArgumentType`, que implementa el filtro `@modid`): el namespace que REI le asigna a una
+entrada sale directo de `getContainingNamespace()`, que por default es
+`getIdentifier(stack).getNamespace()` — es decir, el namespace del **Item real** detrás del
+stack, sin ningún gancho en la API pública de plugins para sobrescribirlo. Como la pestaña
+creativa usa libros encantados de verdad (`minecraft:enchanted_book`, solo con distintos
+componentes), REI siempre los va a leer como `minecraft`, sin importar qué plugin se registre.
+
+Las únicas dos formas reales de cambiar esto serían registrar ítems propios en vez de libros
+encantados vanilla (dejarían de ser libros encantados "de verdad" a menos que se les copie ese
+comportamiento a mano), o un mixin dentro de las clases internas de REI (no su API pública,
+más frágil ante actualizaciones). Se decidió no hacer ninguna de las dos por ahora porque es
+solo cosmético.
 
 ## Versiones usadas
 
