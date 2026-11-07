@@ -12,7 +12,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.ItemEnchantments;
 
@@ -31,7 +30,7 @@ public final class ModCreativeTabs {
 	public static void register() {
 		CreativeModeTab tab = CreativeModeTab.builder(CreativeModeTab.Row.TOP, 0)
 				.title(Component.translatable("itemGroup.moreusefulenchants"))
-				.icon(() -> new ItemStack(Items.ENCHANTED_BOOK))
+				.icon(() -> new ItemStack(ModItems.ENCHANTED_BOOK))
 				.displayItems((parameters, output) -> {
 					for (ResourceKey<Enchantment> key : ModEnchantments.ALL) {
 						Holder<Enchantment> holder = parameters.holders().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(key);
@@ -46,7 +45,7 @@ public final class ModCreativeTabs {
 	}
 
 	private static ItemStack enchantedBook(Holder<Enchantment> holder, int level) {
-		ItemStack book = new ItemStack(Items.ENCHANTED_BOOK);
+		ItemStack book = new ItemStack(ModItems.ENCHANTED_BOOK);
 		ItemEnchantments.Mutable enchantments = new ItemEnchantments.Mutable(ItemEnchantments.EMPTY);
 		enchantments.set(holder, level);
 		book.set(DataComponents.STORED_ENCHANTMENTS, enchantments.toImmutable());

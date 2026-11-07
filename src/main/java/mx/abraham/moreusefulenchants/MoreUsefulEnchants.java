@@ -1,11 +1,13 @@
 package mx.abraham.moreusefulenchants;
 
 import mx.abraham.moreusefulenchants.item.ModCreativeTabs;
+import mx.abraham.moreusefulenchants.item.ModItems;
 import mx.abraham.moreusefulenchants.logic.AutoSmeltHandler;
 import mx.abraham.moreusefulenchants.logic.DetonateHandler;
 import mx.abraham.moreusefulenchants.logic.HarvestHandler;
 import mx.abraham.moreusefulenchants.logic.HeadThiefHandler;
 import mx.abraham.moreusefulenchants.logic.LifestealHandler;
+import mx.abraham.moreusefulenchants.logic.LightningHandler;
 import mx.abraham.moreusefulenchants.logic.ReplenishHandler;
 import mx.abraham.moreusefulenchants.logic.TelekinesisHandler;
 import mx.abraham.moreusefulenchants.logic.TreecapitatorHandler;
@@ -24,6 +26,7 @@ public class MoreUsefulEnchants implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
+		ModItems.register();
 		ModCreativeTabs.register();
 
 		PlayerBlockBreakEvents.BEFORE.register(ReplenishHandler::beforeBlockBreak);
@@ -39,6 +42,7 @@ public class MoreUsefulEnchants implements ModInitializer {
 		LootTableEvents.MODIFY_DROPS.register(TelekinesisHandler::modifyDrops);
 
 		ServerLivingEntityEvents.AFTER_DAMAGE.register(LifestealHandler::afterDamage);
+		ServerLivingEntityEvents.AFTER_DAMAGE.register(LightningHandler::afterDamage);
 		ServerLivingEntityEvents.AFTER_DEATH.register(HeadThiefHandler::afterDeath);
 		ServerLivingEntityEvents.AFTER_DEATH.register(TelekinesisHandler::afterDeath);
 

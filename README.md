@@ -1,6 +1,6 @@
 # MoreUsefulEnchants
 
-Mod de Fabric para Minecraft Java Edition **26.2** que agrega nueve encantamientos:
+Mod de Fabric para Minecraft Java Edition **26.2** que agrega once encantamientos:
 
 - **Detonate** (morado, nivel máximo 1, picos y palas): al minar un bloque, también
   se rompen los bloques del mismo tipo en un prisma 3x3x2 alrededor (el plano 3x3
@@ -34,12 +34,66 @@ Mod de Fabric para Minecraft Java Edition **26.2** que agrega nueve encantamient
 - **Head Thief / Ladrón de cabezas** (`#E0D6B8`, nivel máximo 3, espadas y hachas): al
   matar, probabilidad de soltar la cabeza del mob (zombi, esqueleto, creeper, piglin,
   jugador), +2% por nivel de Saqueo. Compatible con Telekinesis.
+- **Max Health / Vida máxima** (`#FF6B81`, nivel máximo 5, pecheras, encantamiento de
+  tesoro): +2 corazones de vida máxima por nivel (nivel V = +10 corazones, 40 de vida
+  máxima en total). 100% data-driven (efecto `minecraft:attributes` sobre
+  `minecraft:max_health`, sin código Java): al quitarse la pechera la vida se ajusta
+  sola al máximo normal, igual que vanilla con cualquier otro atributo. Comerciable con
+  bibliotecarios (precio doble) y aparece en botín de cofres. Compatible con
+  Protección y el resto de encantamientos de armadura.
+- **Lightning / Relámpago** (`#FFE14D`, nivel máximo 3, espadas y hachas): al golpear
+  con un ataque cargado, probabilidad de que caiga un rayo sobre el objetivo (10/20/30%
+  según el nivel). Funciona con cualquier clima, a diferencia de Canalización. El rayo
+  es puramente visual: el daño, el fuego y las conversiones (creeper cargado, aldeano
+  convertido en bruja, etc.) se aplican manualmente solo al objetivo, así que nunca
+  daña al jugador que ataca ni prende fuego a los bloques de alrededor. Máximo 1 rayo
+  por objetivo por segundo. Compatible con Telekinesis, Head Thief, Lifesteal, Saqueo y
+  Aspecto ígneo.
 
 Detonate, Treecapitator y Veinminer son mutuamente excluyentes entre sí. Auto-Smelt es
 incompatible solo con Toque de Seda (sigue siendo compatible con Fortuna). El resto no
 tiene restricciones de exclusividad entre sí y todos siguen siendo compatibles con los
 demás encantamientos normales de su herramienta (Fortuna, Toque de seda, Eficiencia,
 Irrompibilidad, Reparación, Saqueo).
+
+## Libro encantado propio del mod
+
+Cualquier libro encantado que tenga al menos un encantamiento de este mod es, en
+realidad, el ítem `moreusefulenchants:enchanted_book` (no `minecraft:enchanted_book`),
+para que REI, EMI, JEI y cualquier otro visor de recetas lo muestren con el
+namespace/badge de "MoreUsefulEnchants" en vez de "Minecraft". Un libro que solo tenga
+encantamientos vanilla sigue siendo el libro de siempre.
+
+El libro del mod copia exactamente el comportamiento del libro encantado vanilla
+(mismos encantamientos guardados, mismo brillo, misma rareza, pila de 1, mismo tooltip,
+mismo nombre, y reutiliza la textura vanilla desde su modelo de ítem sin copiar el
+archivo) y participa igual que él en:
+
+- **Yunque**: aplicar el libro a una herramienta/arma/armadura soportada, y combinar
+  dos libros entre sí (incluyendo mod + vanilla). El resultado sigue la regla general:
+  si queda con algún encantamiento del mod, es el libro del mod; si no, es el vanilla.
+- **Piedra de afilar**: quitarle los encantamientos (menos maldiciones) devuelve un
+  libro normal con la misma XP que con el libro vanilla.
+- **Mesa de encantamiento**: encantar un libro normal da el libro del mod si sale algún
+  encantamiento del mod.
+- **Aldeanos bibliotecarios**: los intercambios de "esmeralda + libro" que salgan con un
+  encantamiento del mod entregan el libro del mod.
+- **Botín de cofres, pesca** y cualquier otra loot table que encante libros al azar o
+  con un encantamiento fijo.
+- **Libreros cincelados**: lo aceptan igual que a cualquier otro libro (está en el tag
+  `minecraft:bookshelf_books`).
+- **Pestaña creativa**: la pestaña propia de MoreUsefulEnchants tiene un libro del mod
+  por cada nivel de cada encantamiento del mod; esos mismos libros ya no aparecen
+  duplicados (con el namespace vanilla) en la pestaña de Ingredientes.
+- **Migración**: un libro vanilla guardado de una partida anterior con encantamientos
+  del mod se convierte solo al libro del mod la primera vez que entra al inventario del
+  jugador o se abre un contenedor (cofre, barril, shulker box, etc.) que lo contenga —
+  sin revisar inventarios cada tick.
+
+Nota de adaptación: en esta versión los atriles (`lectern_books`) nunca aceptan libros
+encantados (solo libros normales/escritos), y Fabric API 0.161.0+26.2 no trae tags
+convencionales `c:` para libros — solo existe el tag vanilla `bookshelf_books` — así que
+no hizo falta tocar ninguno de los dos.
 
 ## Compilar
 
@@ -66,29 +120,6 @@ Para probar en un cliente de desarrollo (descarga assets, puede tardar la primer
    - [Fabric API](https://modrinth.com/mod/fabric-api) `0.161.0+26.2` o compatible
      (es una dependencia obligatoria, declarada en `fabric.mod.json`).
 3. Lanza Minecraft 26.2 con el perfil de Fabric Loader.
-
-## Nota conocida: badge de mod en REI
-
-Si usas [REI](https://modrinth.com/mod/roughly-enough-items), los tres encantamientos
-aparecen con el badge/namespace de "Minecraft" en vez de "MoreUsefulEnchants" al buscarlos o al
-filtrar con `@`. Esto es un límite real de REI, no un bug del mod ni algo arreglable con un
-plugin de integración: la `ResourceKey` y los tags de los tres encantamientos sí usan el
-namespace `moreusefulenchants` correctamente (confirmado revisando el bytecode de
-`Enchantment`/tags en el jar de 26.2).
-
-Se investigó el jar real de REI 26.2 (`me.shedaniel.rei.api.common.entry.type.EntryDefinition`
-y `ModArgumentType`, que implementa el filtro `@modid`): el namespace que REI le asigna a una
-entrada sale directo de `getContainingNamespace()`, que por default es
-`getIdentifier(stack).getNamespace()` — es decir, el namespace del **Item real** detrás del
-stack, sin ningún gancho en la API pública de plugins para sobrescribirlo. Como la pestaña
-creativa usa libros encantados de verdad (`minecraft:enchanted_book`, solo con distintos
-componentes), REI siempre los va a leer como `minecraft`, sin importar qué plugin se registre.
-
-Las únicas dos formas reales de cambiar esto serían registrar ítems propios en vez de libros
-encantados vanilla (dejarían de ser libros encantados "de verdad" a menos que se les copie ese
-comportamiento a mano), o un mixin dentro de las clases internas de REI (no su API pública,
-más frágil ante actualizaciones). Se decidió no hacer ninguna de las dos por ahora porque es
-solo cosmético.
 
 ## Versiones usadas
 
@@ -178,3 +209,32 @@ literal (ese es un color de tinte/lana, no de texto); el más cercano a "azul cl
 - [ ] Si el pico con Veinminer se rompe a la mitad de la veta, se detiene el resto.
 - [ ] `./gradlew build` compila sin errores y `./gradlew runClient` carga el juego sin
       errores del mod en el log (encantamientos registrados, JSON válidos).
+- [ ] `/enchant @s moreusefulenchants:max_health 5` en una pechera da +10 corazones
+      (40 de vida máxima en total); al quitarte la pechera vuelve a 20.
+- [ ] `/enchant @s moreusefulenchants:max_health` falla en un casco/pantalones/botas.
+- [ ] Max Health no sale en la mesa de encantamiento (es de tesoro), pero sí aparece
+      como intercambio de un bibliotecario (precio doble de esmeraldas) y puede salir
+      en botín de cofres.
+- [ ] `/enchant @s moreusefulenchants:lightning 3` en una espada o hacha: al golpear
+      cargado (soltar el click después de esperar), ~30% de las veces cae un rayo
+      visual sobre el mob golpeado, con sonido, en cualquier clima (prueba en un día
+      despejado). El rayo daña/incendia/convierte (creeper cargado, aldeano → bruja)
+      solo al objetivo: el jugador que ataca no recibe daño ni se prende fuego, y los
+      bloques alrededor del objetivo no se incendian.
+- [ ] Lightning no cae más de una vez por segundo sobre el mismo objetivo aunque lo
+      golpees varias veces rápido.
+- [ ] Un libro encantado con Max Health o Lightning (desde la pestaña creativa del
+      mod, un bibliotecario o la mesa de encantamiento) se ve como
+      `moreusefulenchants:enchanted_book` en REI/EMI/JEI al buscar `@moreusefulenchants`
+      (no como `minecraft:enchanted_book`), con el mismo tooltip y brillo que un libro
+      vanilla.
+- [ ] Ese libro del mod se puede aplicar a una herramienta/arma/armadura soportada en
+      el yunque, y se puede combinar con otro libro (del mod o vanilla) en el yunque.
+- [ ] Vaciar ese libro en la piedra de afilar devuelve un libro normal (no el libro del
+      mod vacío) con la XP correspondiente.
+- [ ] La pestaña creativa de MoreUsefulEnchants tiene un libro del mod por cada nivel
+      de Max Health y Lightning (y de los demás encantamientos del mod); esos libros no
+      aparecen duplicados con el namespace vanilla en la pestaña de Ingredientes.
+- [ ] Un libro vanilla con un encantamiento del mod (por ejemplo colocado a mano con
+      `/give` usando `minecraft:enchanted_book` + componentes) se convierte al libro del
+      mod al recogerlo del suelo o al abrir el cofre/barril/shulker box donde esté.

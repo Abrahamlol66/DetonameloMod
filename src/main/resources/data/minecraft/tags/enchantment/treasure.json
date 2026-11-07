@@ -1,6 +1,7 @@
 {
 	"replace": false,
 	"values": [
-		"moreusefulenchants:lifesteal"
+		"moreusefulenchants:lifesteal",
+		"moreusefulenchants:max_health"
 	]
 }

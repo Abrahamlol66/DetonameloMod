@@ -1,0 +1,35 @@
+{
+	"anvil_cost": 8,
+	"description": {
+		"translate": "enchantment.moreusefulenchants.max_health",
+		"color": "#FF6B81"
+	},
+	"effects": {
+		"minecraft:attributes": [
+			{
+				"amount": {
+					"type": "minecraft:linear",
+					"base": 4.0,
+					"per_level_above_first": 4.0
+				},
+				"attribute": "minecraft:max_health",
+				"id": "moreusefulenchants:enchantment.max_health",
+				"operation": "add_value"
+			}
+		]
+	},
+	"max_cost": {
+		"base": 60,
+		"per_level_above_first": 10
+	},
+	"max_level": 5,
+	"min_cost": {
+		"base": 10,
+		"per_level_above_first": 10
+	},
+	"slots": [
+		"head"
+	],
+	"supported_items": "#minecraft:enchantable/head_armor",
+	"weight": 1
+}

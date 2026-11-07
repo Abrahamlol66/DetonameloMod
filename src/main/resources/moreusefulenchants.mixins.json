@@ -4,9 +4,18 @@
 	"compatibilityLevel": "JAVA_25",
 	"mixins": [
 		"AnvilMenuMixin",
+		"ContainerMixin",
+		"CreativeModeTabsMixin",
+		"EnchantRandomlyFunctionMixin",
+		"EnchantmentHelperMixin",
+		"EnchantmentMenuMixin",
+		"GrindstoneMenuMixin",
+		"InventoryMixin",
 		"ItemCombinerMenuAccessor",
 		"PlayerAttackMixin",
-		"ServerPlayerGameModeMixin"
+		"ServerPlayerGameModeMixin",
+		"SetEnchantmentsFunctionMixin",
+		"VillagerTradesMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

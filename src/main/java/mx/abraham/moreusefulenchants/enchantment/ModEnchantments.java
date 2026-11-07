@@ -32,10 +32,15 @@ public final class ModEnchantments {
 			ResourceKey.create(Registries.ENCHANTMENT, MoreUsefulEnchants.id("lifesteal"));
 	public static final ResourceKey<Enchantment> HEAD_THIEF =
 			ResourceKey.create(Registries.ENCHANTMENT, MoreUsefulEnchants.id("head_thief"));
+	public static final ResourceKey<Enchantment> MAX_HEALTH =
+			ResourceKey.create(Registries.ENCHANTMENT, MoreUsefulEnchants.id("max_health"));
+	public static final ResourceKey<Enchantment> LIGHTNING =
+			ResourceKey.create(Registries.ENCHANTMENT, MoreUsefulEnchants.id("lightning"));
 
 	/** Todos los encantamientos del mod, usado por el mixin de yunque para validarlos a todos. */
 	public static final List<ResourceKey<Enchantment>> ALL = List.of(
-			DETONATE, TREECAPITATOR, VEINMINER, AUTO_SMELT, REPLENISH, HARVEST, TELEKINESIS, LIFESTEAL, HEAD_THIEF);
+			DETONATE, TREECAPITATOR, VEINMINER, AUTO_SMELT, REPLENISH, HARVEST, TELEKINESIS, LIFESTEAL, HEAD_THIEF,
+			MAX_HEALTH, LIGHTNING);
 
 	private ModEnchantments() {
 	}

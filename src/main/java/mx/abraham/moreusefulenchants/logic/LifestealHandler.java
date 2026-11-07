@@ -15,13 +15,16 @@ import java.util.UUID;
 
 /**
  * Logica del encantamiento Lifesteal: al golpear con un ataque cargado (cooldown >= 0.9), cura
- * al atacante un porcentaje del daño final infligido segun el nivel, maximo 4 de vida (2
- * corazones) por golpe. No cura si el daño fue 0 o el objetivo no es una entidad viva de verdad
- * (armor stands, etc.).
+ * al atacante una cantidad fija por nivel mas un porcentaje del daño final infligido, con un
+ * tope que tambien escala por nivel. La parte fija es la que hace que se note el efecto incluso
+ * contra objetivos con mucha armadura (donde el daño real por golpe es pequeño y un porcentaje
+ * de eso solo no alcanzaria a notarse). No cura si el daño fue 0 o el objetivo no es una entidad
+ * viva de verdad (armor stands, etc.).
  */
 public final class LifestealHandler {
-	private static final float[] HEAL_PERCENT_BY_LEVEL = {0.0f, 0.10f, 0.15f, 0.20f};
-	private static final float MAX_HEAL = 4.0f;
+	private static final float[] FLAT_HEAL_BY_LEVEL = {0.0f, 1.0f, 1.5f, 2.0f};
+	private static final float[] HEAL_PERCENT_BY_LEVEL = {0.0f, 0.20f, 0.30f, 0.40f};
+	private static final float[] MAX_HEAL_BY_LEVEL = {0.0f, 3.0f, 5.0f, 7.0f};
 	private static final float MIN_ATTACK_STRENGTH = 0.9f;
 
 	/**
@@ -61,7 +64,7 @@ public final class LifestealHandler {
 			return;
 		}
 
-		float heal = Math.min(damageTaken * HEAL_PERCENT_BY_LEVEL[level], MAX_HEAL);
+		float heal = Math.min(FLAT_HEAL_BY_LEVEL[level] + damageTaken * HEAL_PERCENT_BY_LEVEL[level], MAX_HEAL_BY_LEVEL[level]);
 		if (heal > 0.0f) {
 			attacker.heal(heal);
 		}
